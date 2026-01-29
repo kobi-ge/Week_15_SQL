@@ -9,7 +9,7 @@ con = get_db_connection()
 def get_customers_by_credit_limit_range():
     """Return customers with credit limits outside the normal range."""
     cursor = con.cursor()
-    cursor.execute("SELECT SUM(amount) as total, AVG(amount) as average, MIN(amount) as minimum, MAX(amount) as maximum FROM payments")
+    cursor.execute("SELECT customerName, creditLimit FROM customers WHERE creditLimit > 100000 or creditLimit < 10000")
     return cursor.fetchall()
 
 def get_orders_with_null_comments():
@@ -27,7 +27,7 @@ def get_first_5_customers():
 def get_payments_total_and_average():
     """Return total and average payment amounts."""
     cursor = con.cursor()
-    cursor.execute("SELECT SUM(amount) as total, AVG(amount) as average, MIN(amount) as minimum, MAX(amount) as maximumFROM payments")
+    cursor.execute("SELECT SUM(amount) as total, AVG(amount) as average, MIN(amount) as minimum, MAX(amount) as maximum FROM payments")
     return cursor.fetchall()
  
 def get_employees_with_office_phone():
@@ -45,7 +45,7 @@ def get_customers_with_shipping_dates():
 def get_customer_quantity_per_order():
     """Return customer name and quantity for each order."""
     cursor = con.cursor()
-    cursor.execute("SELECT c.customerName, SUM(od.quantityOrdered) as items FROM customers c JOIN orders oON o.customerNumber = c.customerNumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY od.orderNumber ORDER BY customerName")
+    cursor.execute("SELECT c.customerName, SUM(od.quantityOrdered) as items FROM customers c JOIN orders o ON o.customerNumber = c.customerNumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY od.orderNumber ORDER BY customerName")
     return cursor.fetchall()
 
 def get_customers_payments_by_lastname_pattern():
