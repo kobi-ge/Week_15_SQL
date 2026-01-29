@@ -1,7 +1,7 @@
 from typing import List, Dict, Any
 
 from db import get_db_connection
-from db_init import init_database()
+from db_init import init_database
 
 init_database()
 con = get_db_connection()
