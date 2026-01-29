@@ -1,5 +1,9 @@
 from typing import List, Dict, Any
 
+from db import get_db_connection
+
+con = get_db_connection()
+
 def get_customers_by_credit_limit_range():
     """Return customers with credit limits outside the normal range."""
     pass
