@@ -1,7 +1,9 @@
 from typing import List, Dict, Any
 
 from db import get_db_connection
+from db_init import init_database()
 
+init_database()
 con = get_db_connection()
 
 def get_customers_by_credit_limit_range():
