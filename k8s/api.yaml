@@ -15,7 +15,16 @@ spec:
         app: api
     spec:
       containers:
-      - name: api
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: api
+          image: kobigdocker/api-sqldb
+          ports:
+            - containerPort: 8000
+          env:
+          - name: host
+            value: "mysql-service"
+          - name: user
+            value: "root"
+          - name: password
+            value: "rootpassword"
+          - name: database
+            value: "classicmodels"
