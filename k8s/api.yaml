@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: kobigdocker/api-sqldb:v4
+          image: kobigdocker/api-sqldb:v5
           ports:
             - containerPort: 8000
           env:
