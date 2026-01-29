@@ -6,7 +6,9 @@ con = get_db_connection()
 
 def get_customers_by_credit_limit_range():
     """Return customers with credit limits outside the normal range."""
-    pass
+    cursor = con.cursor()
+    cursor.execute("SELECT SUM(amount) as total, AVG(amount) as average, MIN(amount) as minimum, MAX(amount) as maximum FROM payments")
+    return cursor.fetchall()
 
 def get_orders_with_null_comments():
     """Return orders that have null comments."""
